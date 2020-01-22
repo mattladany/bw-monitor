@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'curses'
+
+begin
+  # start ncurses
+  Curses.init_screen
+  Curses::stdscr.keypad = true
+
+  x = Curses.cols / 2  # We will center our text
+  y = Curses.lines / 2
+  Curses.setpos(y, x)  # Move the cursor to the center of the screen
+  Curses.addstr("bwm")  # Display the text
+  Curses.refresh  # Refresh the screen
+  Curses.getch  # Waiting for a pressed key to exit
+ensure
+  Curses.close_screen
+end
+
