@@ -5,15 +5,42 @@ require 'curses'
 
 begin
   # start ncurses
+  Curses.noecho
   Curses.init_screen
+  Curses.start_color
   Curses::stdscr.keypad = true
+  Curses.curs_set(0)
 
-  x = Curses.cols / 2  # We will center our text
-  y = Curses.lines / 2
-  Curses.setpos(y, x)  # Move the cursor to the center of the screen
-  Curses.addstr("bwm")  # Display the text
-  Curses.refresh  # Refresh the screen
-  Curses.getch  # Waiting for a pressed key to exit
+  win1 = Curses::Window.new(Curses.lines / 2 - 1, Curses.cols / 2 - 1, 0, 0)
+  win1.box("o","o")
+  win1.setpos(2, 2)
+  win1.addstr("hello")
+  win1.refresh
+
+  win2 = Curses::Window.new(Curses.lines / 2 - 1, Curses.cols / 2 - 1, Curses.lines / 2, Curses.cols / 2)
+  win2.box("|","-")
+  win2.refresh
+  2.upto(win2.maxx - 3) do |i|
+    win2.setpos(win2.maxy / 2, i)
+    win2 << "*"
+    win2.refresh
+    sleep 0.05
+  end
+
+#  x = Curses.cols / 2  # We will center our text
+#  y = Curses.lines / 2
+#  Curses.setpos(y, x)  # Move the cursor to the center of the screen
+#  Curses.addstr("bwm")  # Display the text
+#  Curses.refresh  # Refresh the screen
+#
+  loop do
+    input = win1.getch  # Waiting for a pressed key to exit
+    if (input == 'q')
+      break
+    end
+
+    win2.addch(input)
+  end
 ensure
   Curses.close_screen
 end
