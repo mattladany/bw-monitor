@@ -1,36 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'curses'
+require './lib/bandwidth_monitor'
 
-begin
+include BandwidthMonitor
 
-  # start ncurses
-  Curses.noecho
-  Curses.init_screen
-  Curses.start_color
-  Curses::stdscr.keypad = true
-  Curses.curs_set(0)
-
-  win1 = Curses::Window.new(Curses.lines / 2 - 1, Curses.cols - 2, 0, 0)
-  win1.box('|', '-')
-  win1.setpos(2, 2)
-  win1.addstr('hello')
-  win1.refresh
-
-  menu_window = Curses::Window.new(3, Curses.cols - 2,
-                                   Curses.lines - 3, 1)
-  menu_window.box('|', '-')
-  menu_window.setpos(1, 1)
-  menu_window.addstr('Press \'q\' to quit')
-  menu_window.refresh
-  
-  loop do
-    input = win1.getch  # Waiting for a pressed key to exit
-    break if input == 'q'
-  end
-
-ensure
-  Curses.close_screen
-end
-
+run
