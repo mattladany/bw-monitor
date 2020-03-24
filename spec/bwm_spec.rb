@@ -1,6 +1,6 @@
-RSpec.describe Bwm do
+RSpec.describe BandwidthMonitor do
   it "has a version number" do
-    expect(Bwm::VERSION).not_to be nil
+    expect(BandwidthMonitor::VERSION).not_to be nil
   end
 
 #  it "does something useful" do
