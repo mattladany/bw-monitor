@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-require 'ui'
+require 'curses'
+require 'singleton'
 
 module BandwidthMonitor
   class Menu
+    include Singleton
+
     attr_reader :window
 
     def initialize
@@ -16,12 +19,11 @@ module BandwidthMonitor
     end
 
     def handle_input(str)
-
       return false if str.eql? 'q'
       @window.setpos(1, Curses.cols - 20)
       @window.addstr("you entered: #{str}")
       @window.refresh
-      return true
+      true
     end
 
     def start
