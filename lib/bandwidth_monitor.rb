@@ -1,6 +1,6 @@
 require_relative "bwm/version"
-require_relative "bwm/menu"
-require "curses"
+require_relative "bwm/ui/menu"
+require "ui"
 
 module BandwidthMonitor
   class Error < StandardError; end
@@ -22,19 +22,13 @@ module BandwidthMonitor
       win1.addstr('hello')
       win1.refresh
 
-    #  menu_window = Curses::Window.new(3, Curses.cols - 2,
-    #                                   Curses.lines - 3, 1)
-    #  menu_window.box('|', '-')
-    #  menu_window.setpos(1, 1)
-    #  menu_window.addstr('Press \'q\' to quit')
-    #  menu_window.refresh
-
-      menu = BandwidthMonitor::Menu.new
-
-      loop do
-        input = win1.getch  # Waiting for a pressed key to exit
-        break if !menu.handle_input(input)
+      menu_thread = Thread.new do
+        menu = Menu.new
+        menu.start
       end
+
+
+      menu_thread.join
 
     ensure
       Curses.close_screen

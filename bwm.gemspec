@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['mattladany']
   spec.email         = ['matt@va-a.com']
 
-  spec.summary       = %q(Monitor your network bandwidth utilization)
+  spec.summary       = 'Monitor your network bandwidth utilization'
   spec.homepage      = 'https://github.com/mattladany/bw-monitor'
   spec.license       = 'GNU v3.0'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
