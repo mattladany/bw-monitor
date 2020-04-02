@@ -1,6 +1,5 @@
 require_relative 'bwm/version'
-require_relative 'bwm/ui/menu'
-require_relative "bwm/ui/bandwidth_graph"
+require_relative 'bwm/ui/ui'
 require "curses"
 
 module BandwidthMonitor
@@ -19,17 +18,8 @@ module BandwidthMonitor
   def run
 
     init_curses
-
-    bandwidth_graph_thread = Thread.new do
-      BandwidthGraph.instance.start
-    end
-
-    menu_thread = Thread.new do
-      Menu.instance.start
-    end
-
-    menu_thread.join
-    bandwidth_graph_thread.exit
+    ui = UI::UIController.new
+    ui.start
 
   ensure
     Curses.close_screen
