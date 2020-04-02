@@ -1,6 +1,7 @@
 require_relative 'bwm/version'
 require_relative 'bwm/ui/menu'
-require 'curses'
+require_relative "bwm/ui/bandwidth_graph"
+require "curses"
 
 module BandwidthMonitor
   class Error < StandardError; end
@@ -19,17 +20,16 @@ module BandwidthMonitor
 
     init_curses
 
-    win1 = Curses::Window.new(Curses.lines / 2 - 1, Curses.cols - 2, 0, 0)
-    win1.box('|', '-')
-    win1.setpos(2, 2)
-    win1.addstr('hello')
-    win1.refresh
+    bandwidth_graph_thread = Thread.new do
+      BandwidthGraph.instance.start
+    end
 
     menu_thread = Thread.new do
       Menu.instance.start
     end
 
     menu_thread.join
+    bandwidth_graph_thread.exit
 
   ensure
     Curses.close_screen
