@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'bwm/version'
 require_relative 'bwm/ui/ui'
-require "curses"
+require 'curses'
 
 module BandwidthMonitor
   class Error < StandardError; end
