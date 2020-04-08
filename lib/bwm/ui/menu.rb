@@ -5,6 +5,7 @@ require 'singleton'
 
 module BandwidthMonitor
   module UI
+    # The menu for the entire application.
     class Menu
       include Singleton
 
@@ -21,6 +22,7 @@ module BandwidthMonitor
 
       def handle_input(str)
         return false if str.eql? 'q'
+
         @window.setpos(1, Curses.cols - 20)
         @window.addstr("you entered: #{str}")
         @window.refresh
@@ -28,7 +30,6 @@ module BandwidthMonitor
       end
 
       def start
-
         # Loop forever until the 'q' key is pressed
         loop do
           input = @window.getch

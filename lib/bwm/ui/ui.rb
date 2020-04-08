@@ -1,9 +1,11 @@
-# frozen_string_literal = true
+# frozen_string_literal: true
+
 require_relative 'menu'
 require_relative 'bandwidth_graph'
 
 module BandwidthMonitor
   module UI
+    # The main controller for ncurses interactions.
     class UIController
       attr_reader :menu, :bandwidth_graph
 

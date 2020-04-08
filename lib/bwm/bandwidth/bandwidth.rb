@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+
 require 'curses'
 
 module BandwidthMonitor
+  # The controller for all throughput access.
   class Bandwidth
     attr_accessor :download, :upload
 
