@@ -4,5 +4,4 @@
 
 require './lib/bandwidth_monitor'
 
-import BandwidthMonitor
-run
+BandwidthMonitor.run

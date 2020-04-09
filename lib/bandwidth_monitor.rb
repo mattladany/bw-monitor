@@ -24,4 +24,6 @@ module BandwidthMonitor
   ensure
     Curses.close_screen
   end
+
+  module_function :run, :init_curses
 end
