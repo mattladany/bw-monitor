@@ -63,3 +63,6 @@ Gemfile.lock
 
 # IDEA
 /.idea/
+
+# rspec
+.rspec_status
