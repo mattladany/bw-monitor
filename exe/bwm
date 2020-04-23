@@ -2,6 +2,9 @@
 
 # frozen_string_literal: true
 
-require './lib/bandwidth_monitor'
+$LOAD_PATH.unshift("#{__dir__}/../lib")
 
-BandwidthMonitor.run
+require 'bandwidth_monitor'
+
+cli = BandwidthMonitor::CLI.new
+cli.run
