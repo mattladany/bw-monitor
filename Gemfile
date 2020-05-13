@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in bwm.gemspec
+# Specify your gem's dependencies in tpm.gemspec
 gemspec
 
 gem 'ascii_chart'

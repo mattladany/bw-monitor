@@ -1,2 +1,2 @@
-# bw-monitor
-A live terminal bandwidth monitor
+# throughput--monitor
+A live terminal throughput monitor

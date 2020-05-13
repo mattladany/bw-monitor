@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require_relative '../bandwidth/bandwidth'
+require_relative '../throughput/throughput'
 require 'curses'
 require 'singleton'
 require 'ascii_chart'
 
-module BandwidthMonitor
+module ThroughputMonitor
   module UI
     # The graph window in the ncurses UI.
-    class BandwidthGraph
+    class ThroughputGraph
       include Singleton
 
-      attr_reader :graph_window, :x_axis_window, :bandwidth
+      attr_reader :graph_window, :x_axis_window, :throughput
 
       def initialize
-        @bandwidth = Bandwidth.new
+        @throughput = Throughput.new
 
         @graph_window = Curses::Window.new(Curses.lines / 2 - 1,
                                            Curses.cols - 2, 0, 0)

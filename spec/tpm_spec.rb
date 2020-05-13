@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-RSpec.describe BandwidthMonitor do
+RSpec.describe ThroughputMonitor do
   it 'has a version number' do
-    expect(BandwidthMonitor::VERSION).not_to be nil
+    expect(ThroughputMonitor::VERSION).not_to be nil
   end
 end

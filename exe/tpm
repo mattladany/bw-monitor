@@ -4,7 +4,7 @@
 
 $LOAD_PATH.unshift("#{__dir__}/../lib")
 
-require 'bandwidth_monitor'
+require 'throughput_monitor'
 
-cli = BandwidthMonitor::CLI.new
+cli = ThroughputMonitor::CLI.new
 cli.run

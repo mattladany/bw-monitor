@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 require_relative 'menu'
-require_relative 'bandwidth_graph'
+require_relative 'throughput_graph'
 
-module BandwidthMonitor
+module ThroughputMonitor
   module UI
     # The main controller for ncurses interactions.
     class UIController
-      attr_reader :menu, :bandwidth_graph
+      attr_reader :menu, :throughput_graph
 
       def initialize
         @menu = Menu.instance
-        @bandwidth_graph = BandwidthGraph.instance
+        @throughput_graph = ThroughputGraph.instance
       end
 
       def start
@@ -19,12 +19,12 @@ module BandwidthMonitor
           @menu.start
         end
 
-        bandwidth_graph_thread = Thread.new do
-          @bandwidth_graph.start
+        throughput_graph_thread = Thread.new do
+          @throughput_graph.start
         end
 
         menu_thread.join
-        bandwidth_graph_thread.exit
+        throughput_graph_thread.exit
       end
     end
   end

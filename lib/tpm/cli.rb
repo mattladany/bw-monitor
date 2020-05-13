@@ -4,7 +4,7 @@ require_relative 'ui/ui'
 
 require 'curses'
 
-module BandwidthMonitor
+module ThroughputMonitor
   class Error < StandardError; end
   # The CLI class is in charge of all command line interface processing as
   # well as starting the curses app if all logic passes. Note: This is closely

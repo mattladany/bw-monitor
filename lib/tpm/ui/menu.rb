@@ -3,7 +3,7 @@
 require 'curses'
 require 'singleton'
 
-module BandwidthMonitor
+module ThroughputMonitor
   module UI
     # The menu for the entire application.
     class Menu

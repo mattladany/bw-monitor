@@ -2,9 +2,9 @@
 
 require 'curses'
 
-module BandwidthMonitor
+module ThroughputMonitor
   # The controller for all throughput access.
-  class Bandwidth
+  class Throughput
     attr_accessor :download, :upload
 
     def initialize
