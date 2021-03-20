@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'curses'
+require_relative 'overflowing_array'
 
 module ThroughputMonitor
   # The controller for all throughput access.
@@ -9,26 +9,24 @@ module ThroughputMonitor
 
     def initialize(interface = 'eth0')
       @interface = interface
-      @download = []
+      @download = OverflowingArray.new(10)
       @upload = []
     end
 
     def start
       x = 0
       loop do
-        @download << x
+        @download.add(x)
         sleep 4
         x = x + 1
       end
     end
 
     def download_rate
-      (0...@download.length()).map do |i|
-        @download[i]
+      arr = @download.arr
+      (0...@download.arr.length()).map do |i|
+        @download.arr[i]
       end
-#      (0...90).map do |i|
-#        Math.cos(i * ((Math::PI * 8) / 90)).round(2) * 10
-#      end
     end
   end
 end

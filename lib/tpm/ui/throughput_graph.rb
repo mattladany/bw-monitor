@@ -38,8 +38,7 @@ module ThroughputMonitor
       def update_graph
         @graph_window.setpos(3, 0)
         @graph_window.addstr(AsciiChart.plot(@throughput.download_rate,
-                                             { height: (Curses.cols / 4) }))
-        #@graph_window.addstr(@throughput.download_rate.to_a.inspect)
+                                             { height: (Curses.lines / 2 - 5) }))
         @graph_window.refresh
       end
 
@@ -47,8 +46,8 @@ module ThroughputMonitor
         @x_axis_window.setpos(0, 3)
         @x_axis_window.addstr('Mb/s')
 
-        @x_axis_window.setpos(0, Curses.cols / 2 - 1)
-        @x_axis_window.addstr('testing1234!')
+        @x_axis_window.setpos(0, Curses.cols / 2 - 8)
+        @x_axis_window.addstr('download throughput')
 
         @x_axis_window.refresh
       end
