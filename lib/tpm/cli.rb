@@ -39,7 +39,9 @@ module ThroughputMonitor
       STATUS_FAILURE
     end
 
-    def process_arguments(_args); end
+    def process_arguments(_args)
+      true
+    end
 
     def run_app
       init_curses

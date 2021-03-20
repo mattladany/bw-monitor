@@ -24,18 +24,22 @@ module ThroughputMonitor
       end
 
       def start
-        initialize_graph
         initialize_x_axis
+        throughput_thread = Thread.new do
+          @throughput.start
+        end
         loop do
+          sleep 5
+          update_graph
         end
       end
 
-      def initialize_graph
+      # TODO
+      def update_graph
         @graph_window.setpos(3, 0)
-        @graph_window.addstr(AsciiChart.plot((0...89).map do |i|
-          Math.cos(i * ((Math::PI * 8) / 90)).round(2) * 10
-        end, { height: (Curses.cols / 4) }))
-
+        @graph_window.addstr(AsciiChart.plot(@throughput.download_rate,
+                                             { height: (Curses.cols / 4) }))
+        #@graph_window.addstr(@throughput.download_rate.to_a.inspect)
         @graph_window.refresh
       end
 
